@@ -1,6 +1,6 @@
 # Pramaan (प्रमाण)
 
-**Har line ka pramaan.** *Proof for every line of your resume.*
+**Proof behind every line.**
 
 Pramaan is an evidence-first career copilot for Indian students and freshers. It helps you **prove every claim on your resume, decide which jobs are worth applying to, and prepare for the questions your own resume invites.** It is powered by our own fine-tuned language model, with a strict validator that stops it from inventing facts.
 
@@ -29,7 +29,7 @@ Most resume tools polish the *document*. Freshers' real problems are different: 
 | Phase | Name | Outcome |
 |---|---|---|
 | 0 | Foundations | Repo, design tokens, security baseline, name checks |
-| 1 | **Landing page** | Public site, secure waitlist, validates demand |
+| 1 | **Landing page** | Local preview built; secure waitlist and public launch remain planned |
 | 2 | **Model training** | Own fine-tuned model + small models + validator, evaluated on a gold set |
 | 3 | **Backend, auth and dashboard UI** | Working product for private beta |
 | 4 | Beta and hardening | Security review, privacy review, real-user feedback |
@@ -56,9 +56,10 @@ Full detail: [02-PHASES-AND-ROADMAP](docs/02-PHASES-AND-ROADMAP.md).
 | 13 | [API and Data Model](docs/13-API-AND-DATA-MODEL.md) | Endpoints, schemas, Fact Ledger |
 | 14 | [Deployment and Ops](docs/14-DEPLOYMENT-AND-OPS%20%281%29.md) | Infra, CI/CD, monitoring, costs |
 
-## Tech stack (proposed)
+## Tech stack
 
-- **Frontend:** Next.js (TypeScript), Tailwind CSS, Radix UI primitives; minimal glassmorphism design; mobile-first.
+- **Landing page (implemented):** Next.js 16, React 19, TypeScript, custom responsive CSS, self-hosted fonts, and a Canvas animation. Glass surfaces are used in the interactive product examples.
+- **Product frontend (planned):** Next.js, TypeScript, Tailwind CSS, and accessible UI primitives.
 - **Backend:** Python, FastAPI, Pydantic, PostgreSQL, S3-compatible storage.
 - **ML:** PyTorch, Hugging Face Transformers, PEFT/TRL (QLoRA fine-tuning), a 7B to 8B class open-weight base model, small encoder models for extraction, Groq for minor language tasks only.
 - **Serving:** GPU inference service for the main model (vLLM or similar); CPU for small models and the rules engine.
@@ -86,16 +87,14 @@ pramaan/
 └── README.md
 ```
 
-## Getting started *(planned)*
-
-The scaffold is not committed yet. When it is, local setup will be:
+## Run the landing page locally
 
 ```bash
-git clone https://github.com/<your-username>/pramaan.git
-cd pramaan
-cp .env.example .env     # fill in values; never commit .env
-docker compose up --build
+npm install
+npm run dev
 ```
+
+Open [http://127.0.0.1:3000](http://127.0.0.1:3000). Run `npm run typecheck` and `npm run build` to check the current frontend. The interactive scenes use illustrative examples; the product and waitlist are not live, and the preview collects no email or resume data.
 
 ## Contributing
 

@@ -1,14 +1,14 @@
-# 08. Design System: Cosmic Glass
+# 08. Design System: Cinematic Glass
 
 ## Where this direction comes from
 
 The reference is the user-provided short launch video and the [GPT-6 Astra launch page](https://openai.com/index/gpt-6-astra/). Its useful qualities are scale, restraint, pacing and the move from atmosphere into concrete examples. Reading frames from the video, the look is:
 
-- a **near-black navy void** with soft blue nebula clouds and a faint dot grid
+- a **near-black void** with atmospheric light and a faint dot grid
 - a **cloud of tiny white star particles** that gathers into the shape of the title
-- **large, light-weight, tightly set grotesque type**: line one white, line two in a pale periwinkle gradient, ending in a full stop
+- **large, light-weight, tightly set grotesque type**: warm white with a restrained stone gradient on the second line
 - **small monospace eyebrow labels** in capitals with wide tracking ("INTRODUCING", "A SPACE FOR POSSIBILITY")
-- **dark glass panels**: deep navy fill, hairline light-blue border, large radius, a faint top-edge glow
+- **dark glass panels**: nearly transparent charcoal fill, fine warm border, and a faint top-edge glow
 - a **prompt box** that types text, with a small model selector underneath
 - **speed-line streaks** radiating outward as the camera "zooms"
 - a **3D-tilted glass card** showing a mini page, with a light **pill button** and a tiny orbit-and-star icon
@@ -24,7 +24,7 @@ Pramaan takes the **mood and craft level**, not the identity. See [What we do no
 
 - Unproven claims are dim, small stars. As evidence is added they brighten and gain a ring.
 - Proof levels map to brightness and shape: Listed (faint dot), Used (small star), Demonstrated (bright star), Quantified (bright star with a **warm saffron core**).
-- The saffron core is the single warm accent in the whole palette: it means "proven". That keeps the UI calm and gives it an Indian signature without costume.
+- Warm amber is reserved for a proven highlight; the rest of the landing page stays charcoal, ivory, and stone.
 - The hero animation shows noisy stars (a weak bullet) condensing into a clean constellation (a verified bullet).
 
 ## Design principles
@@ -41,33 +41,34 @@ Pramaan takes the **mood and craft level**, not the identity. See [What we do no
 ```css
 :root {
   /* Void */
-  --void-0: #03060f;          /* deepest background */
-  --void-1: #060c1c;          /* page background */
-  --void-2: #0a1428;          /* panel fill base */
-  --nebula-1: #0f2a55;        /* soft cloud */
-  --nebula-2: #1b3f7a;        /* brighter cloud, used sparingly */
+  --void-0: #080706;          /* deepest background */
+  --void-1: #0b0a08;          /* page background */
+  --void-2: #1c1916;          /* panel fill base */
+  --nebula-1: #363028;        /* soft cloud */
+  --nebula-2: #6a4b35;        /* brighter cloud, used sparingly */
 
   /* Text */
-  --ink-1: #f2f5fc;           /* primary */
-  --ink-2: #aab6d3;           /* secondary */
-  --ink-3: #7f8caa;           /* tertiary: large text or non-essential only */
-  --accent-1: #b9ccf5;        /* periwinkle highlight */
-  --accent-2: #86a6ea;        /* periwinkle deeper */
+  --ink-1: #f3efe9;           /* primary */
+  --ink-2: #b3b0ad;           /* secondary */
+  --ink-3: #898580;           /* tertiary: large text or non-essential only */
+  --accent-1: #f4efe7;        /* warm highlight */
+  --accent-2: #b9a690;        /* stone deeper */
 
   /* Meaning */
-  --proof-0: #6b7794;         /* Listed */
-  --proof-1: #e0b04a;         /* Used */
-  --proof-2: #9db8f5;         /* Demonstrated */
-  --proof-3: #ffb454;         /* Quantified: saffron core, the only warm accent */
+  --proof-0: #77716a;         /* Listed */
+  --proof-1: #b69a76;         /* Used */
+  --proof-2: #e2d8cb;         /* Demonstrated */
+  --proof-3: #d6aa78;         /* Quantified: warm core */
   --ok: #55d6b8;
   --risk: #ff7f8f;
   --warn: #ffd166;
 
   /* Glass */
-  --glass-fill: rgba(10, 20, 40, 0.62);
-  --glass-fill-strong: rgba(10, 20, 40, 0.82);
-  --glass-border: rgba(160, 190, 255, 0.18);
-  --glass-edge-glow: rgba(190, 215, 255, 0.35);   /* top edge highlight */
+  --nav-glass-fill: rgba(28, 25, 22, 0.12);
+  --glass-fill: rgba(35, 32, 28, 0.62);
+  --glass-fill-strong: rgba(28, 25, 22, 0.82);
+  --glass-border: rgba(244, 236, 222, 0.14);
+  --glass-edge-glow: rgba(244, 236, 222, 0.24);   /* top edge highlight */
   --glass-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
   --glass-blur: 14px;
 
@@ -78,7 +79,7 @@ Pramaan takes the **mood and craft level**, not the identity. See [What we do no
 }
 ```
 
-**Themes.** Dark "void" is the primary theme and the brand. A light theme exists for the dashboard only (paper-white background, navy ink, same proof colours adjusted for contrast); the landing page ships dark only. Verify every text/background pair on the **rendered** background, including brightest particle behind text.
+**Themes.** The landing page ships dark only. A future dashboard can use a light paper theme. Verify every text/background pair on the **rendered** background, including the brightest particle behind text.
 
 ## Background layers (back to front)
 
@@ -96,11 +97,11 @@ Pramaan takes the **mood and craft level**, not the identity. See [What we do no
 | Display | Clean grotesque, **light to regular weight**, tight tracking (about -0.03em), very large | Matches the launch look; avoid bold headlines |
 | Body / UI | Same family or a neutral sans | 16px base, line-height about 1.6 |
 | Eyebrow / labels | **Monospace, uppercase, wide tracking** (about 0.14em), 11 to 12px | The "INTRODUCING"-style labels |
-| Devanagari | Noto Sans Devanagari or similar | For Hindi and Hinglish; same weights where possible |
+| Devanagari | Optional future localisation font | The landing page copy is English |
 
 Use open-licence fonts (self-hosted, subset, `font-display: swap`). Do not use or imitate a proprietary brand font.
 
-**Headline pattern:** two lines. Line one `--ink-1`; line two filled with a periwinkle gradient (`--accent-1` to `--accent-2`) via `background-clip: text`, ending in a full stop. Example: "Har line ka" / "pramaan."
+**Headline pattern:** two lines. Line one `--ink-1`; line two filled with a warm stone gradient (`--accent-1` to `--accent-2`) via `background-clip: text`, ending in a full stop. Example: "Proof behind" / "every line."
 
 ```css
 .display { font-weight: 400; letter-spacing: -0.03em; line-height: 1.02;
@@ -137,7 +138,7 @@ Use open-licence fonts (self-hosted, subset, `font-display: swap`). Do not use o
 }
 ```
 
-Panels are **dark and fairly opaque** (as in the reference), which also protects text contrast and reduces blur cost.
+Product panels are **dark and fairly opaque** to protect text contrast. The floating navigation uses `--nav-glass-fill` and a stronger blur, stays almost transparent, and moves slightly lower after scrolling.
 
 ## Core components
 
@@ -206,7 +207,7 @@ Rules:
 
 - Contrast: 4.5:1 body, 3:1 large text and UI boundaries, checked against the brightest background pixel behind the element.
 - Decorative canvases are `aria-hidden`; the demo has a **text alternative** and a "skip animation" control.
-- Keyboard: skip link, visible focus rings (periwinkle, 2px), no keyboard traps in the demo.
+- Keyboard: skip link, visible warm-white focus rings (2px), no keyboard traps in the demo.
 - Do not flash; no strobe effects; speed lines never exceed three streaks per 100 ms.
 - `prefers-reduced-motion` and `prefers-reduced-transparency` supported.
 - Proof levels always use icon + text + colour.
@@ -214,7 +215,7 @@ Rules:
 
 ## Copy voice
 
-Short, confident, specific. Lines like "Every number checked against what you told us." Light Hinglish touches (the tagline) are welcome; core UI stays in clear English with a Hinglish toggle later. No hype, no guarantees.
+Short, confident, specific English. Lines like "Every number checked against what you told us." No hype, no guarantees.
 
 ## What we do not copy
 
