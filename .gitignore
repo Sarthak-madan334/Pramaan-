@@ -1,6 +1,15 @@
 node_modules/
+.venv-ml/
 .next/
 out/
 .env*
 !.env.example
 *.tsbuildinfo
+
+# Phase 2 data and model artifacts: keep resumes and evaluation sets private.
+ml/data/private/
+ml/eval/gold/
+ml/checkpoints/
+*.safetensors
+__pycache__/
+*.py[cod]
